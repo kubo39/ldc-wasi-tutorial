@@ -43,7 +43,8 @@ index eb00b156..be3b204c 100644
 4. Compile with wasi-sdk and Run!
 
 ```console
-$ ./build-ldc/bin/ldc2 -mtriple=wasm32-unknown-wasi -betterC -L./wasi-sdk-10.0/share/wasi-sysroot/lib/wasm32-wasi/crt1.o -L./wasi-sdk-10.0/share/wasi-sysroot/lib/wasm32-wasi/libc.a --linker=./wasi-sdk-10.0/bin/wasm-ld main.d
-$ wasmtime main.wasm
-Hello, WASI!
+$ ./build-ldc/bin/ldc2 --mtriple=wasm32-unknown-wasi -betterC -L./wasi-sdk-10.0/share/wasi-sysroot/lib/wasm32-wasi/crt1.o -L./wasi-sdk-10.0/share/wasi-sysroot/lib/wasm32-wasi/libc.a --linker=./wasi-sdk-10.0/bin/wasm-ld main.d
+% wasmtime --dir=. --dir=/tmp main.wasm test.txt /tmp/somewhere.txt
+$ cat /tmp/somewhere.txt
+hello world
 ```
