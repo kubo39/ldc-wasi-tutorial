@@ -1,0 +1,5 @@
+/build-ldc/
+/wasi-sdk-10.0/
+*.tar.gz
+*.o
+*.wasm

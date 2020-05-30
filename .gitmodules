@@ -1,0 +1,4 @@
+[submodule "ldc"]
+	path = ldc
+	url = https://github.com/skoppe/ldc
+	branch = wasm
