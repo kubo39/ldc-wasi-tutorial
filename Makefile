@@ -23,3 +23,5 @@ run: build
 
 clean:
 	$(RM) *.o *.wasm
+
+.DELETE_ON_ERROR: # GNU Make directive (delete output files on error)
