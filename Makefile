@@ -1,13 +1,14 @@
+WASI_SDK_PATH = $(PWD)/wasi-sdk-10.0
+WASI_SYSROOT = $(WASI_SDK_PATH)/share/wasi-sysroot
+
 LDC = $(PWD)/build-ldc/bin/ldc2
-LD = $(PWD)/wasi-sdk-10.0/bin/wasm-ld
+LD = $(WASI_SDK_PATH)/bin/wasm-ld
 
 DFLAGS = --mtriple=wasm32-unknown-wasi -betterC
+LFLAGS = -L$(WASI_SYSROOT)/lib/wasm32-wasi/crt1.o -L$(WASI_SYSROOT)/lib/wasm32-wasi/libc.a -L--stack-first
 
 SOURCES = main.d
 TARGET = main.wasm
-
-WASI_SDK_PATH = $(PWD)/wasi-sdk-10.0
-WASI_SYSROOT = $(WASI_SDK_PATH)/share/wasi-sysroot
 
 WASMTIME = wasmtime
 
@@ -16,7 +17,7 @@ WASMTIME = wasmtime
 all: build
 
 build:
-	$(LDC) $(DFLAGS) -L$(WASI_SYSROOT)/lib/wasm32-wasi/crt1.o -L$(WASI_SYSROOT)/lib/wasm32-wasi/libc.a -L--stack-first --linker=$(LD) -of=$(TARGET) $(SOURCES)
+	$(LDC) $(DFLAGS) $(LFLAGS) --linker=$(LD) -of=$(TARGET) $(SOURCES)
 
 run: build
 	$(WASMTIME) --dir=. --dir=/tmp $(TARGET) test.txt /tmp/somewhere.txt
