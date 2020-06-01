@@ -27,6 +27,8 @@ $ tar xvf wasi-sdk-10.0-linux.tar.gz
 
 3. Create a patch for druntime and apply it.
 
+- This is a patch.
+
 ```diff
 diff --git a/src/core/internal/entrypoint.d b/src/core/internal/entrypoint.d
 index eb00b156..be3b204c 100644
@@ -43,6 +45,8 @@ index eb00b156..be3b204c 100644
              pragma(msg, "emit _start");
              import ldc.attributes;
 ```
+
+- How to apply.
 
 ```console
 $ (cd ldc/runtime/druntime && git apply ../../../druntime.patch)
