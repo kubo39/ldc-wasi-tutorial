@@ -1,7 +1,14 @@
 LDC = $(PWD)/build-ldc/bin/ldc2
 LD = $(PWD)/wasi-sdk-10.0/bin/wasm-ld
+
+DFLAGS = --mtriple=wasm32-unknown-wasi -betterC
+
+SOURCES = main.d
+TARGET = main.wasm
+
 WASI_SDK_PATH = $(PWD)/wasi-sdk-10.0
 WASI_SYSROOT = $(WASI_SDK_PATH)/share/wasi-sysroot
+
 WASMTIME = wasmtime
 
 .PHONY: all clean
@@ -9,10 +16,10 @@ WASMTIME = wasmtime
 all: build
 
 build:
-	$(LDC) --mtriple=wasm32-unknown-wasi -betterC -L$(WASI_SYSROOT)/lib/wasm32-wasi/crt1.o -L$(WASI_SYSROOT)/lib/wasm32-wasi/libc.a --linker=$(LD) main.d
+	$(LDC) $(DFLAGS) -L$(WASI_SYSROOT)/lib/wasm32-wasi/crt1.o -L$(WASI_SYSROOT)/lib/wasm32-wasi/libc.a -L--stack-first --linker=$(LD) -of=$(TARGET) $(SOURCES)
 
 run: build
-	$(WASMTIME) --dir=. --dir=/tmp main.wasm test.txt /tmp/somewhere.txt
+	$(WASMTIME) --dir=. --dir=/tmp $(TARGET) test.txt /tmp/somewhere.txt
 
 clean:
 	$(RM) *.o *.wasm
