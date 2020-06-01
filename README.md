@@ -1,5 +1,12 @@
 # Run D in wasmtime
 
+## Prerequirements
+
+- D Compiler
+- ninja
+
+## Howto
+
 1. Clone repo `skoppe/ldc:wasm`.
 
 ```console
