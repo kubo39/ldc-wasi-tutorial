@@ -1,4 +1,4 @@
-// ./build-ldc/bin/ldc2 -mtriple=wasm32-unknown-wasi -betterC -L./wasi-sdk-10.0/share/wasi-sysroot/lib/wasm32-wasi/crt1.o -L./wasi-sdk-10.0/share/wasi-sysroot/lib/wasm32-wasi/libc.a -L--stack-first --linker=./wasi-sdk-10.0/bin/wasm-ld memory.d
+// ./build-ldc/bin/ldc2 -mtriple=wasm32-unknown-wasi -betterC -L./wasi-sdk-10.0/share/wasi-sysroot/lib/wasm32-wasi/crt1.o -L./wasi-sdk-10.0/share/wasi-sysroot/lib/wasm32-wasi/libc.a -L--stack-first -L--gc-sections --linker=./wasi-sdk-10.0/bin/wasm-ld memory.d
 
 import core.stdc.stdio;
 import core.stdc.stdlib : abort;
