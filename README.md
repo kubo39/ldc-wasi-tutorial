@@ -62,8 +62,8 @@ $ (cd ldc/runtime/druntime && git apply ../../../druntime.patch)
 4. Compile with wasi-sdk and RUN!
 
 ```console
-$ ./build-ldc/bin/ldc2 --mtriple=wasm32-unknown-wasi -betterC -L./wasi-sdk-10.0/share/wasi-sysroot/lib/wasm32-wasi/crt1.o -L./wasi-sdk-10.0/share/wasi-sysroot/lib/wasm32-wasi/libc.a --linker=./wasi-sdk-10.0/bin/wasm-ld main.d
-% wasmtime --dir=. --dir=/tmp main.wasm test.txt /tmp/somewhere.txt
+$ ./build-ldc/bin/ldc2 --mtriple=wasm32-unknown-wasi -betterC -L./wasi-sdk-10.0/share/wasi-sysroot/lib/wasm32-wasi/crt1.o -L./wasi-sdk-10.0/share/wasi-sysroot/lib/wasm32-wasi/libc.a --linker=./wasi-sdk-10.0/bin/wasm-ld -of=demo.wasm demo.d
+% wasmtime --dir=. --dir=/tmp demo.wasm test.txt /tmp/somewhere.txt
 $ cat /tmp/somewhere.txt
 hello world
 ```

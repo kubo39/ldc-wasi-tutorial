@@ -7,8 +7,8 @@ LD = $(WASI_SDK_PATH)/bin/wasm-ld
 DFLAGS = --mtriple=wasm32-unknown-wasi -betterC
 LFLAGS = -L$(WASI_SYSROOT)/lib/wasm32-wasi/crt1.o -L$(WASI_SYSROOT)/lib/wasm32-wasi/libc.a -L--stack-first
 
-SOURCES = main.d
-TARGET = main.wasm
+SOURCES = demo.d
+TARGET = demo.wasm
 
 WASMTIME = wasmtime
 
