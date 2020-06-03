@@ -17,22 +17,9 @@ $ cd ldc
 $ git submodule init
 $ git submodule update --recursive
 $ cd ..
-$ mkdir build-ldc && cd build-ldc
-$ cmake -G Ninja ../ldc \
-  -DCMAKE_BUILD_TYPE=Release \
-  -DCMAKE_INSTALL_PREFIX=$PWD/../install-ldc
-$ ninja -j$(nproc)
-$ cd ..
 ```
 
-2. Get wasi-sdk.
-
-```console
-$ wget https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-10/wasi-sdk-10.0-linux.tar.gz
-$ tar xvf wasi-sdk-10.0-linux.tar.gz
-```
-
-3. Create a patch for druntime and apply it.
+2. Create a patch for druntime and apply it.
 
 - This is a patch.
 
@@ -59,7 +46,25 @@ index eb00b156..be3b204c 100644
 $ (cd ldc/runtime/druntime && git apply ../../../druntime.patch)
 ```
 
-4. Compile with wasi-sdk and RUN!
+3. Build LDC.
+
+```console
+$ mkdir build-ldc && cd build-ldc
+$ cmake -G Ninja ../ldc \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DCMAKE_INSTALL_PREFIX=$PWD/../install-ldc
+$ ninja -j$(nproc)
+$ cd ..
+```
+
+4. Get wasi-sdk.
+
+```console
+$ wget https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-10/wasi-sdk-10.0-linux.tar.gz
+$ tar xvf wasi-sdk-10.0-linux.tar.gz
+```
+
+5. Compile with wasi-sdk and RUN!
 
 ```console
 $ ./build-ldc/bin/ldc2 --mtriple=wasm32-unknown-wasi -betterC -L./wasi-sdk-10.0/share/wasi-sysroot/lib/wasm32-wasi/crt1.o -L./wasi-sdk-10.0/share/wasi-sysroot/lib/wasm32-wasi/libc.a --linker=./wasi-sdk-10.0/bin/wasm-ld -of=demo.wasm demo.d
