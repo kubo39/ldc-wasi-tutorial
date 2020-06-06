@@ -4,7 +4,7 @@ WASI_SYSROOT = $(WASI_SDK_PATH)/share/wasi-sysroot
 LDC = $(PWD)/build-ldc/bin/ldc2
 LD = $(WASI_SDK_PATH)/bin/wasm-ld
 
-DFLAGS = --mtriple=wasm32-unknown-wasi -betterC --relocation-model=static
+DFLAGS = --mtriple=wasm32-unknown-wasi -betterC --relocation-model=static --fvisibility=hidden
 LFLAGS = -L$(WASI_SYSROOT)/lib/wasm32-wasi/crt1.o -L$(WASI_SYSROOT)/lib/wasm32-wasi/libc.a \
     -L--stack-first -L--gc-sections
 
