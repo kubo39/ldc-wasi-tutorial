@@ -67,7 +67,7 @@ $ tar xvf wasi-sdk-10.0-linux.tar.gz
 5. Compile with wasi-sdk and RUN!
 
 ```console
-$ ./build-ldc/bin/ldc2 --mtriple=wasm32-unknown-wasi -betterC --relocation-model=static --fvisibility=hidden -L./wasi-sdk-10.0/share/wasi-sysroot/lib/wasm32-wasi/crt1.o -L./wasi-sdk-10.0/share/wasi-sysroot/lib/wasm32-wasi/libc.a --linker=./wasi-sdk-10.0/bin/wasm-ld -of=demo.wasm demo.d
+$ ./build-ldc/bin/ldc2 --mtriple=wasm32-unknown-wasi -betterC --fvisibility=hidden -L./wasi-sdk-10.0/share/wasi-sysroot/lib/wasm32-wasi/crt1.o -L./wasi-sdk-10.0/share/wasi-sysroot/lib/wasm32-wasi/libc.a --linker=./wasi-sdk-10.0/bin/wasm-ld -of=demo.wasm demo.d
 % wasmtime --dir=. --dir=/tmp demo.wasm test.txt /tmp/somewhere.txt
 $ cat /tmp/somewhere.txt
 hello world
