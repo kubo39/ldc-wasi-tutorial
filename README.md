@@ -19,34 +19,7 @@ $ git submodule update --recursive
 $ cd ..
 ```
 
-2. Create a patch for druntime and apply it.
-
-- This is a patch.
-
-```diff
-diff --git a/src/core/internal/entrypoint.d b/src/core/internal/entrypoint.d
-index eb00b156..be3b204c 100644
---- a/src/core/internal/entrypoint.d
-+++ b/src/core/internal/entrypoint.d
-@@ -45,7 +45,8 @@ template _d_cmain()
-                 return main(argc, argv);
-             }
-         }
--        version (WebAssembly)
-+        version (WASI) {}
-+        else version (WebAssembly)
-           {
-             pragma(msg, "emit _start");
-             import ldc.attributes;
-```
-
-- How to apply.
-
-```console
-$ (cd ldc/runtime/druntime && git apply ../../../druntime.patch)
-```
-
-3. Build LDC.
+2. Build LDC.
 
 ```console
 $ mkdir build-ldc && cd build-ldc
@@ -57,14 +30,14 @@ $ ninja -j$(nproc)
 $ cd ..
 ```
 
-4. Get wasi-sdk.
+3. Get wasi-sdk.
 
 ```console
 $ wget https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-10/wasi-sdk-10.0-linux.tar.gz
 $ tar xvf wasi-sdk-10.0-linux.tar.gz
 ```
 
-5. Compile with wasi-sdk and RUN!
+4. Compile with wasi-sdk and RUN!
 
 ```console
 $ ./build-ldc/bin/ldc2 --mtriple=wasm32-unknown-wasi -betterC --fvisibility=hidden -L./wasi-sdk-10.0/share/wasi-sysroot/lib/wasm32-wasi/crt1.o -L./wasi-sdk-10.0/share/wasi-sysroot/lib/wasm32-wasi/libc.a --linker=./wasi-sdk-10.0/bin/wasm-ld -of=demo.wasm demo.d
