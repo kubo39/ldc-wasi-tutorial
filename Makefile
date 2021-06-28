@@ -1,4 +1,4 @@
-WASI_SDK_PATH = $(PWD)/wasi-sdk-12.0
+WASI_SDK_PATH ?= $(HOME)/wasi-sdk-12.0
 WASI_SYSROOT = $(WASI_SDK_PATH)/share/wasi-sysroot
 
 LDC = ldc2
@@ -22,13 +22,13 @@ WASMTIME = wasmtime
 
 .PHONY: all clean
 
-all: build
+all: $(TARGET)
 
-build:
-	$(LDC) $(DFLAGS) $(LFLAGS) --linker=$(LD) -of=$(TARGET) $(SOURCES)
+$(TARGET): $(SOURCES)
+	$(LDC) $(DFLAGS) --linker=$(LD) $(LFLAGS) -of=$@ $^
 
-run: build
-	$(WASMTIME) --dir=. --dir=/tmp $(TARGET)
+run: $(TARGET)
+	$(WASMTIME) --dir=. --dir=/tmp $^
 
 clean:
 	$(RM) *.o *.wasm
