@@ -1,4 +1,4 @@
-WASI_SDK_PATH ?= $(HOME)/wasi-sdk-14.0
+WASI_SDK_PATH ?= $(HOME)/wasi-sdk-16.0
 WASI_SYSROOT = $(WASI_SDK_PATH)/share/wasi-sysroot
 
 LDC = ldc2

@@ -10,7 +10,7 @@
 1. Get wasi-sdk.
 
 ```console
-$ wget https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-14/wasi-sdk-14.0-linux.tar.gz
+$ wget https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-16/wasi-sdk-16.0-linux.tar.gz
 $ tar xvf wasi-sdk-14.0-linux.tar.gz
 ```
 

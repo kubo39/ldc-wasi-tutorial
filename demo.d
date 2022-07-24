@@ -14,7 +14,7 @@ void constructor()
 
 int tls_var = 42;
 
-int main()
+int __main_argc_argv(int argc, char** argv)
 {
     puts("main");
     printf("tls_var: %d\n", tls_var);
