@@ -1,5 +1,6 @@
-WASI_SDK_PATH ?= $(HOME)/wasi-sdk-16.0
+WASI_SDK_PATH ?= $(HOME)/wasi-sdk-19.0
 WASI_SYSROOT = $(WASI_SDK_PATH)/share/wasi-sysroot
+WASMTIME = $(HOME)/.wasmtime/bin/wasmtime
 
 LDC = ldc2
 LD = $(WASI_SDK_PATH)/bin/wasm-ld
@@ -17,8 +18,6 @@ LFLAGS = -L$(WASI_SYSROOT)/lib/wasm32-wasi/crt1.o \
 
 SOURCES = demo.d
 TARGET = demo.wasm
-
-WASMTIME = wasmtime
 
 .PHONY: all clean
 
