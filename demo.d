@@ -2,8 +2,10 @@ extern(C):
 nothrow:
 @nogc:
 
-int puts(const(char)*) @trusted;
+pragma(printf) int puts(const(char)*) @trusted;
+
 int printf(const(char)* format, ...) @trusted;
+
 void* malloc(size_t) @trusted;
 
 pragma(crt_constructor)
