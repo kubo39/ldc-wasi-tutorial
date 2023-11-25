@@ -2,7 +2,7 @@ extern(C):
 nothrow:
 @nogc:
 
-pragma(printf) int puts(const(char)*) @trusted;
+int puts(const(char)*) @trusted;
 
 int printf(const(char)* format, ...) @trusted;
 
