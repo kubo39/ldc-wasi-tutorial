@@ -1,4 +1,4 @@
-WASI_SDK_PATH ?= $(HOME)/wasi-sdk-19.0
+WASI_SDK_PATH ?= $(HOME)/wasi-sdk-20.0
 WASI_SYSROOT = $(WASI_SDK_PATH)/share/wasi-sysroot
 WASMTIME = $(HOME)/.wasmtime/bin/wasmtime
 
@@ -8,8 +8,7 @@ LD = $(WASI_SDK_PATH)/bin/wasm-ld
 DFLAGS = --mtriple=wasm32-unknown-wasi \
 		-Oz \
 		-betterC \
-		--fvisibility=hidden \
-		--defaultlib=
+		--fvisibility=hidden
 
 LFLAGS = -L$(WASI_SYSROOT)/lib/wasm32-wasi/crt1.o \
 		-L$(WASI_SYSROOT)/lib/wasm32-wasi/libc.a \
