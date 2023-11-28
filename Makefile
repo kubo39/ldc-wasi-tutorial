@@ -12,6 +12,7 @@ DFLAGS = --mtriple=wasm32-unknown-wasi \
 
 LFLAGS = -L$(WASI_SYSROOT)/lib/wasm32-wasi/crt1.o \
 		-L$(WASI_SYSROOT)/lib/wasm32-wasi/libc.a \
+		-L$(WASI_SYSROOT)/lib/wasm32-wasi/libwasi-emulated-process-clocks.a \
 		-L--gc-sections
 
 SOURCES = demo.d
