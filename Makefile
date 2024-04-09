@@ -1,4 +1,4 @@
-WASI_SDK_PATH ?= $(HOME)/wasi-sdk-20.0
+WASI_SDK_PATH ?= $(HOME)/wasi-sdk-21.0
 WASI_SYSROOT = $(WASI_SDK_PATH)/share/wasi-sysroot
 WASMTIME = $(HOME)/.wasmtime/bin/wasmtime
 

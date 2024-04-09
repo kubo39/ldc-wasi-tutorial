@@ -17,7 +17,7 @@ void constructor()
 int tls_var = 42;
 
 // https://github.com/WebAssembly/wasi-libc/commit/d9066a87c04748e7381695eaf01cc5c9a9c3003b
-int __main_argc_argv(int argc, char** argv)
+int __main_void()
 {
     puts("main");
     printf("tls_var: %d\n", tls_var);
